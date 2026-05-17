@@ -114,28 +114,28 @@ export default function Header({ title }: Props) {
   const hasNotifs = notifications.length > 0;
 
   return (
-    <header style={{
-      height: '72px', display: 'flex', alignItems: 'center',
-      justifyContent: 'space-between', padding: '0 28px',
+    <header className="app-header" style={{
+      height: '64px', display: 'flex', alignItems: 'center',
+      justifyContent: 'space-between',
       background: 'white', borderBottom: '1px solid var(--border-color)',
       position: 'sticky', top: 0, zIndex: 50,
       boxShadow: '0 1px 8px rgba(0,0,0,0.04)',
     }}>
       {/* Left: greeting */}
-      <div>
-        <h1 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1.2 }}>
+      <div style={{ minWidth: 0, flex: 1 }}>
+        <h1 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1.2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
           {greeting}, {userName}! 🌿
         </h1>
-        <p style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px' }}>
+        <p className="header-subtitle" style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
           {title}
         </p>
       </div>
 
       {/* Right: search + notif + avatar */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
 
-        {/* Search — press Enter to search history */}
-        <div style={{ position: 'relative' }}>
+        {/* Search — hidden on mobile via CSS class */}
+        <div className="header-search-wrap" style={{ position: 'relative' }}>
           <span style={{
             position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)',
             fontSize: '14px', color: 'var(--text-light)',
@@ -152,7 +152,7 @@ export default function Header({ title }: Props) {
               border: '1.5px solid var(--border-color)',
               background: 'var(--bg-primary)', fontSize: '13px',
               color: 'var(--text-primary)', outline: 'none',
-              width: '230px', transition: 'all 0.2s',
+              width: '200px', transition: 'all 0.2s',
               fontFamily: 'inherit',
             }}
           />

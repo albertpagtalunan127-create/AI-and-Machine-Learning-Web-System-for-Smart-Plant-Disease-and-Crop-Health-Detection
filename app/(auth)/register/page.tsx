@@ -35,7 +35,7 @@ export default function RegisterPage() {
   }
 
   if (success) return (
-    <div style={{ textAlign: 'center', width: '100%', maxWidth: '420px' }}>
+    <div className="auth-card" style={{ textAlign: 'center' }}>
       <div style={{ fontSize: '64px', marginBottom: '20px' }}>🎉</div>
       <h2 style={{ fontSize: '24px', fontWeight: 800, marginBottom: '12px', color: 'var(--text-primary)' }}>
         Account created!
@@ -45,7 +45,7 @@ export default function RegisterPage() {
   );
 
   return (
-    <div style={{ width: '100%', maxWidth: '420px' }}>
+    <div className="auth-card">
       <div style={{ marginBottom: '36px' }}>
         <h2 style={{ fontSize: '26px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '8px' }}>
           Create account 🌱
@@ -108,6 +108,23 @@ export default function RegisterPage() {
           Sign in
         </Link>
       </p>
+
+      <style>{`
+        .auth-card {
+          width: 100%;
+          max-width: 420px;
+        }
+        @media (max-width: 767px) {
+          .auth-card {
+            background: white;
+            border-radius: 20px;
+            padding: 28px 24px;
+            box-shadow: 0 4px 24px rgba(108,92,231,0.10);
+            border: 1px solid var(--border-color);
+            max-width: 100%;
+          }
+        }
+      `}</style>
     </div>
   );
 }

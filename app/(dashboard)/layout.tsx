@@ -15,15 +15,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--bg-primary)' }}>
       <Sidebar />
-      <main style={{
-        marginLeft: 'var(--sidebar-width)',
+      <main className="main-content" style={{
         flex: 1,
         minWidth: 0,
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         overflowY: 'auto',
-        maxWidth: 'calc(100vw - var(--sidebar-width))',
       }}>
         {children}
       </main>

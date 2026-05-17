@@ -1,27 +1,18 @@
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-    }}>
-      {/* Left panel — branding */}
-      <div style={{
-        background: 'linear-gradient(135deg, #0f0e2e 0%, #1a1a3e 50%, #2d1b69 100%)',
-        display: 'flex', flexDirection: 'column',
-        alignItems: 'center', justifyContent: 'center',
-        padding: '60px', position: 'relative', overflow: 'hidden',
-      }}>
-        {/* Background circles */}
+    <div className="auth-root">
+      {/* ── Left panel — branding (hidden on mobile) ── */}
+      <div className="auth-hero">
+        {/* Background blobs */}
         <div style={{
           position: 'absolute', width: '400px', height: '400px', borderRadius: '50%',
           background: 'radial-gradient(circle, rgba(108,92,231,0.25) 0%, transparent 70%)',
-          top: '-100px', right: '-100px',
+          top: '-100px', right: '-100px', pointerEvents: 'none',
         }} />
         <div style={{
           position: 'absolute', width: '300px', height: '300px', borderRadius: '50%',
           background: 'radial-gradient(circle, rgba(0,184,148,0.15) 0%, transparent 70%)',
-          bottom: '-80px', left: '-60px',
+          bottom: '-80px', left: '-60px', pointerEvents: 'none',
         }} />
 
         {/* Logo */}
@@ -65,10 +56,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         </div>
 
         {/* Stats row */}
-        <div style={{
-          display: 'flex', gap: '24px', marginTop: '36px',
-          position: 'relative', zIndex: 1,
-        }}>
+        <div style={{ display: 'flex', gap: '32px', marginTop: '36px', position: 'relative', zIndex: 1 }}>
           {[
             { val: '38+', label: 'Disease Classes' },
             { val: '99%', label: 'Accuracy' },
@@ -76,19 +64,83 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           ].map((s, i) => (
             <div key={i} style={{ textAlign: 'center' }}>
               <div style={{ color: 'white', fontSize: '22px', fontWeight: 800 }}>{s.val}</div>
-              <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '11px' }}>{s.label}</div>
+              <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '11px', marginTop: '4px' }}>{s.label}</div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Right panel — form */}
-      <div style={{
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        padding: '40px', background: '#f4f5fb',
-      }}>
+      {/* ── Right panel — form ── */}
+      <div className="auth-form-panel">
+        {/* Mobile-only mini logo (shown instead of hero panel) */}
+        <div className="auth-mobile-logo">
+          <div style={{
+            width: '52px', height: '52px', borderRadius: '16px',
+            background: 'linear-gradient(135deg, #6c5ce7, #00b894)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: '26px', boxShadow: '0 4px 16px rgba(108,92,231,0.35)',
+            marginBottom: '8px',
+          }}>🌿</div>
+          <div style={{ fontWeight: 800, fontSize: '18px', color: 'var(--text-primary)' }}>PlantGuard AI</div>
+          <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px' }}>AI-Powered Plant Disease Detection</div>
+        </div>
+
         {children}
       </div>
+
+      <style>{`
+        /* Auth layout — two col desktop, single col mobile */
+        .auth-root {
+          min-height: 100vh;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        .auth-hero {
+          background: linear-gradient(135deg, #0f0e2e 0%, #1a1a3e 50%, #2d1b69 100%);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 60px;
+          position: relative;
+          overflow: hidden;
+        }
+        .auth-form-panel {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 40px 24px;
+          background: #f4f5fb;
+          min-height: 100vh;
+          overflow-y: auto;
+        }
+        .auth-mobile-logo {
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          margin-bottom: 32px;
+        }
+
+        /* ── Mobile: hide hero, show mini logo, single column ── */
+        @media (max-width: 767px) {
+          .auth-root {
+            grid-template-columns: 1fr;
+          }
+          .auth-hero {
+            display: none;
+          }
+          .auth-mobile-logo {
+            display: flex;
+          }
+          .auth-form-panel {
+            padding: 32px 20px;
+            justify-content: flex-start;
+            padding-top: 48px;
+          }
+        }
+      `}</style>
     </div>
   );
 }

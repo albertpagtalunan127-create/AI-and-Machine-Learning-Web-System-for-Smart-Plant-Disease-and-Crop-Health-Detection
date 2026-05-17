@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase';
 
 const NAV = [
@@ -14,6 +15,16 @@ const NAV = [
 export default function Sidebar() {
   const pathname = usePathname();
   const router   = useRouter();
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Close drawer on route change
+  useEffect(() => { setMobileOpen(false); }, [pathname]);
+
+  // Prevent body scroll when drawer is open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
 
   async function handleLogout() {
     const supabase = createClient();
@@ -22,14 +33,8 @@ export default function Sidebar() {
     router.refresh();
   }
 
-  return (
-    <aside style={{
-      width: 'var(--sidebar-width)', minHeight: '100vh',
-      background: 'var(--bg-sidebar)',
-      display: 'flex', flexDirection: 'column',
-      position: 'fixed', left: 0, top: 0, bottom: 0,
-      zIndex: 100, flexShrink: 0,
-    }}>
+  const sidebarContent = (
+    <>
       {/* Logo */}
       <div style={{ padding: '28px 20px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
         <Link href="/dashboard" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -90,7 +95,7 @@ export default function Sidebar() {
             Add Your AI Model
           </div>
           <div style={{ color: 'rgba(255,255,255,0.55)', fontSize: '11px', marginBottom: '14px', lineHeight: 1.5 }}>
-            Train on Teachable Machine & paste your model URL
+            Train on Teachable Machine &amp; paste your model URL
           </div>
           <Link
             href="/settings"
@@ -121,6 +126,77 @@ export default function Sidebar() {
           <span style={{ fontSize: '16px' }}>🚪</span> Sign Out
         </button>
       </div>
-    </aside>
+    </>
+  );
+
+  return (
+    <>
+      {/* ── Desktop sidebar (fixed, always visible ≥ 768px) ── */}
+      <aside className="sidebar-desktop" style={{
+        width: 'var(--sidebar-width)', minHeight: '100vh',
+        background: 'var(--bg-sidebar)',
+        display: 'flex', flexDirection: 'column',
+        position: 'fixed', left: 0, top: 0, bottom: 0,
+        zIndex: 100, flexShrink: 0,
+      }}>
+        {sidebarContent}
+      </aside>
+
+      {/* ── Mobile hamburger button (visible < 768px) ── */}
+      <button
+        className="sidebar-hamburger"
+        onClick={() => setMobileOpen(true)}
+        aria-label="Open menu"
+        style={{
+          display: 'none', /* shown via CSS class */
+          position: 'fixed', top: '16px', left: '16px', zIndex: 120,
+          width: '44px', height: '44px', borderRadius: '12px',
+          background: 'var(--bg-sidebar)', border: 'none', cursor: 'pointer',
+          alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 2px 12px rgba(0,0,0,0.18)',
+          color: 'white', fontSize: '20px',
+        }}
+      >
+        ☰
+      </button>
+
+      {/* ── Mobile backdrop ── */}
+      {mobileOpen && (
+        <div
+          onClick={() => setMobileOpen(false)}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 110,
+            background: 'rgba(0,0,0,0.55)',
+            backdropFilter: 'blur(3px)',
+          }}
+        />
+      )}
+
+      {/* ── Mobile drawer ── */}
+      <aside
+        className="sidebar-mobile"
+        style={{
+          position: 'fixed', top: 0, left: 0, bottom: 0, zIndex: 120,
+          width: 'min(280px, 85vw)',
+          background: 'var(--bg-sidebar)',
+          display: 'flex', flexDirection: 'column',
+          transform: mobileOpen ? 'translateX(0)' : 'translateX(-100%)',
+          transition: 'transform 0.28s cubic-bezier(0.4,0,0.2,1)',
+          boxShadow: mobileOpen ? '4px 0 32px rgba(0,0,0,0.35)' : 'none',
+        }}
+      >
+        {/* Close button inside drawer */}
+        <button
+          onClick={() => setMobileOpen(false)}
+          style={{
+            position: 'absolute', top: '16px', right: '16px',
+            width: '32px', height: '32px', borderRadius: '8px',
+            background: 'rgba(255,255,255,0.08)', border: 'none',
+            color: 'rgba(255,255,255,0.7)', fontSize: '16px', cursor: 'pointer',
+          }}
+        >✕</button>
+        {sidebarContent}
+      </aside>
+    </>
   );
 }

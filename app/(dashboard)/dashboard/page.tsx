@@ -98,14 +98,14 @@ export default function DashboardPage() {
     <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
       <Header title="Here's your farm health overview today" />
 
-      <div style={{ padding: '24px 28px', flex: 1 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '24px', alignItems: 'start' }}>
+      <div className="page-padding" style={{ flex: 1 }}>
+        <div className="dashboard-grid">
 
           {/* ── Main column ── */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
             {/* Stats cards */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px' }}>
+            <div className="stats-grid">
               <StatsCard
                 title="Total Scans"    value={total}
                 icon="🔬" colorClass="stat-orange"
@@ -133,7 +133,7 @@ export default function DashboardPage() {
             </div>
 
             {/* Charts row */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: '16px' }}>
+            <div className="charts-grid">
               <WeeklyScanChart data={weeklyData.length > 0 ? weeklyData : undefined} />
               <DiseaseTrendChart />
             </div>
@@ -143,7 +143,7 @@ export default function DashboardPage() {
           </div>
 
           {/* ── Right panel ── */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div className="dashboard-right-panel">
 
             {/* Profile card */}
             <div className="card" style={{ padding: '22px', textAlign: 'center' }}>

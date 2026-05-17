@@ -28,9 +28,9 @@ export default function LoginPage() {
   }
 
   return (
-    <div style={{ width: '100%', maxWidth: '420px' }}>
+    <div className="auth-card">
       {/* Header */}
-      <div style={{ marginBottom: '36px' }}>
+      <div style={{ marginBottom: '32px' }}>
         <h2 style={{ fontSize: '26px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '8px' }}>
           Welcome back 👋
         </h2>
@@ -121,14 +121,29 @@ export default function LoginPage() {
         <div style={{ flex: 1, height: '1px', background: 'var(--border-color)' }} />
       </div>
 
-
-
       <p style={{ textAlign: 'center', color: 'var(--text-secondary)', fontSize: '14px' }}>
         Don&apos;t have an account?{' '}
         <Link href="/register" style={{ color: 'var(--color-primary)', fontWeight: 600 }}>
           Create account
         </Link>
       </p>
+
+      <style>{`
+        .auth-card {
+          width: 100%;
+          max-width: 420px;
+        }
+        @media (max-width: 767px) {
+          .auth-card {
+            background: white;
+            border-radius: 20px;
+            padding: 28px 24px;
+            box-shadow: 0 4px 24px rgba(108,92,231,0.10);
+            border: 1px solid var(--border-color);
+            max-width: 100%;
+          }
+        }
+      `}</style>
     </div>
   );
 }

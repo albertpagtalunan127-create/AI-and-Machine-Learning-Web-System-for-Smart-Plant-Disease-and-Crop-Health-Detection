@@ -201,3 +201,146 @@ h1, h2, h3, h4, h5, h6 { font-weight: inherit; font-size: inherit; }
 /* Table */
 .table-row { transition: background 0.15s; }
 .table-row:hover { background: rgba(108,92,231,0.04); }
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE LAYOUT SYSTEM
+   ───────────────────────────────────────────── */
+
+/* Main content offset — matches sidebar width on desktop */
+.main-content {
+  margin-left: var(--sidebar-width);
+}
+
+/* Header padding */
+.app-header {
+  padding: 0 28px;
+}
+
+/* Page inner padding */
+.page-padding {
+  padding: 24px 28px;
+}
+
+/* Dashboard two-col grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Right panel */
+.dashboard-right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Stats: 4 columns on desktop */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+/* Charts: 1.4 : 1 on desktop */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+}
+
+/* Sidebar: desktop visible, mobile drawer hidden */
+.sidebar-desktop { display: flex; }
+.sidebar-hamburger { display: none !important; }
+.sidebar-mobile { display: flex; }
+
+/* ── Tablet (≤ 1024px) ── */
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-right-panel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Mobile (≤ 767px) ── */
+@media (max-width: 767px) {
+  :root {
+    --sidebar-width: 0px;
+  }
+
+  /* Hide desktop sidebar, show hamburger */
+  .sidebar-desktop {
+    display: none !important;
+  }
+  .sidebar-hamburger {
+    display: flex !important;
+  }
+
+  /* Main content: no sidebar offset, full width */
+  .main-content {
+    margin-left: 0;
+  }
+
+  /* Header: left-pad for hamburger button */
+  .app-header {
+    padding: 0 16px 0 70px;
+  }
+
+  /* Hide search on mobile, keep notif + avatar */
+  .header-search-wrap {
+    display: none;
+  }
+
+  /* Hide subtitle line on very small screens */
+  .header-subtitle {
+    display: none;
+  }
+
+  /* Page padding tighter */
+  .page-padding {
+    padding: 16px;
+  }
+
+  /* Dashboard stacks to single column */
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Right panel stacks */
+  .dashboard-right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* Stats: 2 columns on mobile */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  /* Charts: stack on mobile */
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Small mobile (≤ 400px) ── */
+@media (max-width: 400px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .page-padding {
+    padding: 12px;
+  }
+}
+

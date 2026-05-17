@@ -63,8 +63,8 @@ function HistoryContent() {
     <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
       <Header title="Browse all your plant scan history" />
 
-      <div style={{ padding: '24px 28px', flex: 1 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '22px' }}>
+      <div className="page-padding" style={{ flex: 1 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '22px', flexWrap: 'wrap', gap: '12px' }}>
           <div>
             <h2 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '4px' }}>
               📋 Scan History
@@ -75,7 +75,7 @@ function HistoryContent() {
                 : `${filtered.length} of ${allScans.length} scans shown`}
             </p>
           </div>
-          <div style={{ display: 'flex', gap: '8px' }}>
+          <div style={{ display: 'flex', gap: '8px', flexShrink: 0 }}>
             {allScans.length > 0 && (
               <button
                 onClick={handleClear}
