@@ -66,14 +66,20 @@ export default function RegisterScreen({ navigation }: any) {
 
           {/* Header */}
           <View style={styles.header}>
-            <LinearGradient
-              colors={['#4ade80', '#22c55e', '#16a34a']}
-              style={styles.logoCircle}
-            >
-              <Text style={styles.logoEmoji}>🌱</Text>
-            </LinearGradient>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}>
+              <LinearGradient
+                colors={['#4ade80', '#22c55e', '#16a34a']}
+                style={[styles.logoCircle, { marginBottom: 0, marginRight: 16 }]}
+              >
+                <Text style={styles.logoEmoji}>🌿</Text>
+              </LinearGradient>
+              <View>
+                <Text style={{ fontSize: 24, fontWeight: '800', color: '#ffffff', letterSpacing: 0.5 }}>Smart Plant</Text>
+                <Text style={{ fontSize: 13, color: '#4ade80', marginTop: 2, letterSpacing: 1.2, textTransform: 'uppercase' }}>Disease Detection System</Text>
+              </View>
+            </View>
             <Text style={styles.title}>Create Account</Text>
-            <Text style={styles.subtitle}>Join PlantGuard AI and protect your crops</Text>
+            <Text style={styles.subtitle}>Join Smart Plant and protect your crops</Text>
           </View>
 
           {/* Form Card */}

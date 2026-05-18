@@ -48,14 +48,18 @@ export default function LoginScreen({ navigation }: any) {
         <View style={styles.container}>
           {/* Logo area */}
           <View style={styles.logoSection}>
-            <LinearGradient
-              colors={['#4ade80', '#22c55e', '#16a34a']}
-              style={styles.logoCircle}
-            >
-              <Text style={styles.logoEmoji}>🌿</Text>
-            </LinearGradient>
-            <Text style={styles.appName}>PlantGuard AI</Text>
-            <Text style={styles.tagline}>Smart Disease Detection</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}>
+              <LinearGradient
+                colors={['#4ade80', '#22c55e', '#16a34a']}
+                style={[styles.logoCircle, { marginBottom: 0, marginRight: 16 }]}
+              >
+                <Text style={styles.logoEmoji}>🌿</Text>
+              </LinearGradient>
+              <View>
+                <Text style={styles.appName}>Smart Plant</Text>
+                <Text style={styles.tagline}>Disease Detection System</Text>
+              </View>
+            </View>
           </View>
 
           {/* Card */}
