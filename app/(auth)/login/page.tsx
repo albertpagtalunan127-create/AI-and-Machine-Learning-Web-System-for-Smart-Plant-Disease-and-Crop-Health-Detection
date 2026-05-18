@@ -30,12 +30,27 @@ export default function LoginPage() {
   return (
     <div className="auth-card">
       {/* Header */}
-      <div style={{ marginBottom: '32px' }}>
-        <h2 style={{ fontSize: '26px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '8px' }}>
+      <div style={{ marginBottom: '36px', textAlign: 'center' }}>
+        {/* Branding Logo */}
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', marginBottom: '28px', textAlign: 'left' }}>
+          <div style={{
+            width: '46px', height: '46px', borderRadius: '14px',
+            background: 'linear-gradient(135deg, var(--color-primary), var(--color-healthy))',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: '24px', flexShrink: 0,
+            boxShadow: '0 4px 15px rgba(108,92,231,0.4)',
+          }}>🌿</div>
+          <div>
+            <div style={{ color: 'var(--text-primary)', fontWeight: 800, fontSize: '16px', lineHeight: 1.2 }}>Smart Plant</div>
+            <div style={{ color: 'var(--text-secondary)', fontSize: '12px', lineHeight: 1.4, fontWeight: 500 }}>Disease Detection System</div>
+          </div>
+        </div>
+
+        <h2 style={{ fontSize: '24px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '8px' }}>
           Welcome back 👋
         </h2>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '15px' }}>
-          Sign in to your PlantGuard account
+        <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
+          Sign in to your account
         </p>
       </div>
 

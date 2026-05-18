@@ -46,11 +46,27 @@ export default function RegisterPage() {
 
   return (
     <div className="auth-card">
-      <div style={{ marginBottom: '36px' }}>
-        <h2 style={{ fontSize: '26px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '8px' }}>
+      {/* Header */}
+      <div style={{ marginBottom: '36px', textAlign: 'center' }}>
+        {/* Branding Logo */}
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', marginBottom: '28px', textAlign: 'left' }}>
+          <div style={{
+            width: '46px', height: '46px', borderRadius: '14px',
+            background: 'linear-gradient(135deg, var(--color-primary), var(--color-healthy))',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: '24px', flexShrink: 0,
+            boxShadow: '0 4px 15px rgba(108,92,231,0.4)',
+          }}>🌿</div>
+          <div>
+            <div style={{ color: 'var(--text-primary)', fontWeight: 800, fontSize: '16px', lineHeight: 1.2 }}>Smart Plant</div>
+            <div style={{ color: 'var(--text-secondary)', fontSize: '12px', lineHeight: 1.4, fontWeight: 500 }}>Disease Detection System</div>
+          </div>
+        </div>
+
+        <h2 style={{ fontSize: '24px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '8px' }}>
           Create account 🌱
         </h2>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '15px' }}>
+        <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
           Start protecting your plants with AI today
         </p>
       </div>

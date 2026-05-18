@@ -25,10 +25,10 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             boxShadow: '0 8px 32px rgba(108,92,231,0.4)',
           }}>🌿</div>
           <h1 style={{ color: 'white', fontSize: '28px', fontWeight: 800, marginBottom: '8px' }}>
-            PlantGuard AI
+            Smart Plant
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '15px' }}>
-            AI-Powered Plant Disease Detection
+            Disease Detection System
           </p>
         </div>
 
@@ -81,8 +81,8 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             fontSize: '26px', boxShadow: '0 4px 16px rgba(108,92,231,0.35)',
             marginBottom: '8px',
           }}>🌿</div>
-          <div style={{ fontWeight: 800, fontSize: '18px', color: 'var(--text-primary)' }}>PlantGuard AI</div>
-          <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px' }}>AI-Powered Plant Disease Detection</div>
+          <div style={{ fontWeight: 800, fontSize: '18px', color: 'var(--text-primary)' }}>Smart Plant</div>
+          <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px' }}>Disease Detection System</div>
         </div>
 
         {children}
